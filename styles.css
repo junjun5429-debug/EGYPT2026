@@ -47,7 +47,7 @@ img { display: block; max-width: 100%; }
   z-index: 2;
   width: min(calc(680px + var(--page-gutter)), 58vw);
   margin-left: auto;
-  padding: clamp(72px, 11vh, 118px) var(--page-gutter) 140px 0;
+  padding: clamp(28px, 4vh, 44px) var(--page-gutter) 140px 0;
   text-align: right;
 }
 .eyebrow { margin: 0 0 12px; color: var(--cp-accent); font-size: .73rem; font-weight: 800; letter-spacing: .17em; }
