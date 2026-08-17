@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Egypt 2026 | 旅のしおり</title>
+  <script>
+    (() => {
+      const param = new URLSearchParams(window.location.search).get("scoutTheme");
+      const theme =
+        param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+  <style>
+    :root {
+      color-scheme: light;
+      --cp-bg: #f7f4ef;
+      --cp-bg-elevated: #fcfbf8;
+      --cp-surface: #ffffff;
+      --cp-surface-soft: #f5f5f5;
+      --cp-border: #dedede;
+      --cp-border-strong: #919191;
+      --cp-text: #242424;
+      --cp-text-muted: #5c5c5c;
+      --cp-text-soft: #6f6f6f;
+      --cp-accent: #b11f4b;
+      --cp-accent-hover: #9a1a41;
+      --cp-accent-soft: rgba(177, 31, 75, 0.08);
+      --cp-accent-fg: #ffffff;
+      --cp-success: #16a34a;
+      --cp-danger: #dc2626;
+      --cp-warning: #f59e0b;
+      --cp-link: #0078d4;
+      --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
+      --cp-overlay: rgba(255, 255, 255, 0.8);
+      --cp-panel: rgba(255, 255, 255, 0.86);
+      --cp-panel-strong: rgba(255, 255, 255, 0.96);
+      --cp-sheen: rgba(255, 255, 255, 0.55);
+      --cp-highlight: rgba(177, 31, 75, 0.12);
+    }
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --cp-bg: #3d3b3a;
+      --cp-bg-elevated: #343231;
+      --cp-surface: #292929;
+      --cp-surface-soft: #2e2e2e;
+      --cp-border: #474747;
+      --cp-border-strong: #5f5f5f;
+      --cp-text: #dedede;
+      --cp-text-muted: #919191;
+      --cp-text-soft: #b0b0b0;
+      --cp-accent: #fd8ea1;
+      --cp-accent-hover: #fb7b91;
+      --cp-accent-soft: rgba(253, 142, 161, 0.14);
+      --cp-accent-fg: #1a1a1a;
+      --cp-success: #4ade80;
+      --cp-danger: #f87171;
+      --cp-warning: #fbbf24;
+      --cp-link: #4da6ff;
+      --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+      --cp-overlay: rgba(41, 41, 41, 0.88);
+      --cp-panel: rgba(41, 41, 41, 0.72);
+      --cp-panel-strong: rgba(41, 41, 41, 0.96);
+      --cp-sheen: rgba(255, 255, 255, 0.04);
+      --cp-highlight: rgba(253, 142, 161, 0.12);
+    }
+  </style>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="hero" id="top">
+    <nav class="topbar" aria-label="メインナビゲーション">
+      <a class="brand" href="#top"><span>EGYPT</span><small>2026</small></a>
+      <div class="topbar-meta">
+        <span>2026.09.20 – 09.27</span>
+        <span>8 DAYS</span>
+        <a class="topbar-link" href="checklist.html">事前チェック</a>
+      </div>
+    </nav>
+    <div class="hero-shade" aria-hidden="true"></div>
+    <div class="hero-content">
+      <p class="eyebrow">CAIRO · ABU SIMBEL · NILE · LUXOR</p>
+      <h1>エジプト<br>絶景縦断</h1>
+      <p class="hero-copy">神殿の朝日からナイルの船旅まで。<br>古代の時間を南へたどる8日間。</p>
+    </div>
+    <section class="weather-panel" aria-labelledby="weather-title">
+      <div class="weather-heading">
+        <div>
+          <p class="eyebrow">WEATHER NOW</p>
+          <h2 id="weather-title">現地の天気</h2>
+        </div>
+        <div class="weather-actions">
+          <time id="egypt-time">エジプト --:--</time>
+          <span id="weather-updated" aria-live="polite">取得中</span>
+          <button class="weather-refresh" type="button" id="weather-refresh" aria-label="現在の天気を更新">
+            <span aria-hidden="true">↻</span> 更新
+          </button>
+        </div>
+      </div>
+      <div class="weather-grid" id="weather-grid" aria-live="polite">
+        <article class="weather-card"><span>CAIRO</span><strong>--°</strong><p>取得中</p></article>
+        <article class="weather-card"><span>LUXOR</span><strong>--°</strong><p>取得中</p></article>
+        <article class="weather-card"><span>ASWAN</span><strong>--°</strong><p>取得中</p></article>
+      </div>
+      <p class="weather-source">Weather data by <a href="https://open-meteo.com/" target="_blank" rel="noreferrer">Open-Meteo</a></p>
+    </section>
+    <div class="hero-stats" aria-label="旅行概要">
+      <a href="#itinerary">旅程を見る <span aria-hidden="true">↓</span></a>
+      <a href="#overview">全体スケジュール <span aria-hidden="true">↓</span></a>
+      <a href="checklist.html">事前チェック <span aria-hidden="true">→</span></a>
+    </div>
+  </header>
+
+  <main>
+    <section class="itinerary" id="itinerary" aria-labelledby="itinerary-title">
+      <div class="section-heading compact">
+        <p class="eyebrow">DAILY ITINERARY</p>
+        <h2 id="itinerary-title">日付から旅をひらく</h2>
+      </div>
+      <div class="date-strip" id="date-strip" role="tablist" aria-label="旅行日を選択"></div>
+
+      <div class="day-stage" aria-live="polite">
+        <div class="day-intro">
+          <div class="day-number" id="day-number"></div>
+          <div>
+            <p class="day-location" id="day-location"></p>
+            <h3 id="day-title"></h3>
+            <p id="day-summary"></p>
+          </div>
+        </div>
+        <div class="day-layout">
+          <div class="timeline" id="timeline"></div>
+          <aside class="day-aside">
+            <figure class="day-image">
+              <img id="day-image" src="" alt="">
+              <figcaption id="day-caption"></figcaption>
+            </figure>
+            <div class="day-facts" id="day-facts"></div>
+          </aside>
+        </div>
+        <div class="day-nav">
+          <button type="button" class="nav-button" id="prev-day" aria-label="前の日を見る">← 前の日</button>
+          <span id="day-progress"></span>
+          <button type="button" class="nav-button" id="next-day" aria-label="次の日を見る">次の日 →</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="overview" id="overview" aria-labelledby="overview-title">
+      <div class="section-heading">
+        <p class="eyebrow">THE JOURNEY</p>
+        <h2 id="overview-title">ナイルを遡る、一本の旅</h2>
+        <p>カイロからアブシンベルへ飛び、アスワンからルクソールまで船で北上します。</p>
+      </div>
+      <div class="route" id="route" aria-label="全旅程ルート"></div>
+      <div class="overview-bands">
+        <article><span>FLIGHT</span><strong>成田 → カイロ</strong><p>往路は直行便、復路はカイロ乗継。</p></article>
+        <article><span>CRUISE</span><strong>アスワン → ルクソール</strong><p>5つ星クルーズ船で3連泊。</p></article>
+        <article><span>SPECIAL</span><strong>貸切で出会う遺跡</strong><p>スフィンクス、アブシンベル、王家の谷。</p></article>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>EGYPT 2026 · TI-LCE1008</p>
+    <p>H.I.S. 日程表（2026年2月25日取得）をもとに再構成</p>
+  </footer>
+
+  <dialog class="place-dialog" id="place-dialog" aria-labelledby="place-title">
+    <button type="button" class="dialog-close" id="dialog-close" aria-label="詳細を閉じる">×</button>
+    <div class="dialog-media">
+      <img id="place-image" src="" alt="">
+      <a class="dialog-credit" id="place-credit" href="#" target="_blank" rel="noreferrer" hidden></a>
+    </div>
+    <div class="dialog-content">
+      <p class="eyebrow" id="place-kicker"></p>
+      <h2 id="place-title"></h2>
+      <p class="place-description" id="place-description"></p>
+      <div class="place-section">
+        <h3>見どころ</h3>
+        <ul id="place-highlights"></ul>
+      </div>
+      <div class="place-meta" id="place-meta"></div>
+    </div>
+  </dialog>
+</body>
+</html>

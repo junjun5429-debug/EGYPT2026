@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事前チェック | Egypt 2026</title>
+  <script>
+    (() => {
+      const param = new URLSearchParams(window.location.search).get("scoutTheme");
+      const theme =
+        param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+  <style>
+    :root {
+      color-scheme: light;
+      --cp-bg: #f7f4ef;
+      --cp-bg-elevated: #fcfbf8;
+      --cp-surface: #ffffff;
+      --cp-surface-soft: #f5f5f5;
+      --cp-border: #dedede;
+      --cp-border-strong: #919191;
+      --cp-text: #242424;
+      --cp-text-muted: #5c5c5c;
+      --cp-text-soft: #6f6f6f;
+      --cp-accent: #b11f4b;
+      --cp-accent-hover: #9a1a41;
+      --cp-accent-soft: rgba(177, 31, 75, 0.08);
+      --cp-accent-fg: #ffffff;
+      --cp-success: #16a34a;
+      --cp-danger: #dc2626;
+      --cp-warning: #f59e0b;
+      --cp-link: #0078d4;
+      --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
+      --cp-overlay: rgba(255, 255, 255, 0.8);
+      --cp-panel: rgba(255, 255, 255, 0.86);
+      --cp-panel-strong: rgba(255, 255, 255, 0.96);
+      --cp-sheen: rgba(255, 255, 255, 0.55);
+      --cp-highlight: rgba(177, 31, 75, 0.12);
+    }
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --cp-bg: #3d3b3a;
+      --cp-bg-elevated: #343231;
+      --cp-surface: #292929;
+      --cp-surface-soft: #2e2e2e;
+      --cp-border: #474747;
+      --cp-border-strong: #5f5f5f;
+      --cp-text: #dedede;
+      --cp-text-muted: #919191;
+      --cp-text-soft: #b0b0b0;
+      --cp-accent: #fd8ea1;
+      --cp-accent-hover: #fb7b91;
+      --cp-accent-soft: rgba(253, 142, 161, 0.14);
+      --cp-accent-fg: #1a1a1a;
+      --cp-success: #4ade80;
+      --cp-danger: #f87171;
+      --cp-warning: #fbbf24;
+      --cp-link: #4da6ff;
+      --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+      --cp-overlay: rgba(41, 41, 41, 0.88);
+      --cp-panel: rgba(41, 41, 41, 0.72);
+      --cp-panel-strong: rgba(41, 41, 41, 0.96);
+      --cp-sheen: rgba(255, 255, 255, 0.04);
+      --cp-highlight: rgba(253, 142, 161, 0.12);
+    }
+  </style>
+  <link rel="stylesheet" href="styles.css">
+  <script src="checklist.js" defer></script>
+</head>
+<body class="checklist-page">
+  <header class="checklist-header">
+    <nav class="topbar" aria-label="メインナビゲーション">
+      <a class="brand" href="index.html"><span>EGYPT</span><small>2026</small></a>
+      <div class="topbar-meta">
+        <span>2026.09.20 – 09.27</span>
+        <a class="topbar-link" href="index.html#itinerary">旅程に戻る</a>
+      </div>
+    </nav>
+    <div class="checklist-title">
+      <p class="eyebrow">BEFORE YOU GO</p>
+      <h1>事前チェック</h1>
+      <p>渡航前に確認したい要点と持ち物を、ひとつのページにまとめました。</p>
+    </div>
+  </header>
+
+  <main class="checklist-main">
+    <section class="preflight-notes" aria-labelledby="preflight-title">
+      <div class="section-heading compact">
+        <p class="eyebrow">TRAVEL NOTES</p>
+        <h2 id="preflight-title">出発前に確認すること</h2>
+      </div>
+      <div class="essential-grid">
+        <article><span>01</span><h3>査証</h3><p>カイロ空港到着時に取得。30米ドル（日本国籍／2026年2月時点）。</p></article>
+        <article><span>02</span><h3>時差</h3><p>エジプトは日本より7時間遅れが目安。到着直後から観光予定。</p></article>
+        <article><span>03</span><h3>服装</h3><p>日差し・砂埃対策と歩きやすい靴。船内や機内の冷房に羽織ものを。</p></article>
+        <article><span>04</span><h3>確定書面</h3><p>便・ホテル・クルーズ船名は出発前に届く旅行会社の書面を優先。</p></article>
+      </div>
+    </section>
+
+    <section class="packing-checklist" aria-labelledby="packing-title">
+      <div class="section-heading compact checklist-section-heading">
+        <p class="eyebrow">PACKING CHECKLIST</p>
+        <h2 id="packing-title">持ち物チェック</h2>
+        <p>名前を選んで、それぞれの準備状況を確認できます。チェック状況はこのブラウザーに自動保存されます。</p>
+      </div>
+    <div class="traveler-selector">
+      <span>準備する人</span>
+      <div class="traveler-tabs" id="traveler-tabs" role="tablist" aria-label="準備する人を選択">
+        <button type="button" role="tab" data-person="takuya">TAKUYA <small></small></button>
+        <button type="button" role="tab" data-person="kazuki">KAZUKI <small></small></button>
+        <button type="button" role="tab" data-person="junpei">JUNPEI <small></small></button>
+      </div>
+    </div>
+    <div class="checklist-toolbar" id="packing-panel" role="tabpanel">
+      <div class="progress">
+        <div class="progress-copy"><strong id="progress-percent">0%</strong><span id="progress-count">0 / 0 準備済み</span></div>
+        <div class="progress-track" aria-hidden="true"><div class="progress-bar" id="progress-bar"></div></div>
+      </div>
+      <div class="filter-group" aria-label="表示の絞り込み">
+        <button class="filter-button" type="button" data-filter="all" aria-pressed="true">すべて</button>
+        <button class="filter-button" type="button" data-filter="remaining" aria-pressed="false">未準備のみ</button>
+      </div>
+      <button class="reset-button" type="button" id="reset-checklist">リセット</button>
+    </div>
+
+    <div class="checklist-grid" id="checklist-grid"></div>
+    <p class="empty-state" id="empty-state">すべて準備できました。</p>
+
+    <form class="custom-panel" id="custom-form">
+      <label for="custom-item" id="custom-label">自分用の持ち物を追加</label>
+      <input id="custom-item" name="customItem" type="text" maxlength="50" placeholder="例：旅行用の本" autocomplete="off">
+      <button class="add-button" type="submit">追加</button>
+    </form>
+
+    <p class="checklist-note">航空会社・渡航先・季節により必要品や機内持込条件は異なります。モバイルバッテリーは預け荷物に入れず、最新の航空会社案内を確認してください。</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>EGYPT 2026 · BEFORE YOU GO</p>
+    <p><a href="index.html">旅程トップへ戻る</a></p>
+  </footer>
+</body>
+</html>
