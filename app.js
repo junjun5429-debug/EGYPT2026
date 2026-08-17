@@ -83,7 +83,7 @@ const days = [
   {
     date: "9/20", weekday: "SUN", jpWeekday: "日", location: "NARITA → CAIRO", title: "成田から、砂漠の都へ",
     summary: "夜の直行便でカイロへ。到着後すぐに始まる観光に備え、機内でしっかり休みます。",
-    image: "assets/pyramids.jpg", caption: "明朝から始まるエジプトの旅", facts: [["STAY", "機中泊"], ["MEAL", "旅行日程上は食事なし"]],
+    image: "assets/cairo.jpg", caption: "最初の目的地、砂漠の都カイロ", facts: [["STAY", "機中泊"], ["MEAL", "旅行日程上は食事なし"]],
     events: [
       ["夕方", "成田空港に集合", "旅券、旅行書類、査証代30米ドルを確認。"],
       ["20:30", "成田空港 発", "直行便でカイロへ。"],
@@ -137,7 +137,7 @@ const days = [
   {
     date: "9/25", weekday: "FRI", jpWeekday: "金", location: "EDFU → LUXOR", title: "ホルス神殿から、灯り始めるルクソールへ",
     summary: "神殿へ馬車で向かい、エスナの水門を越えて古代テーベへ入ります。",
-    image: "assets/karnak.jpg", caption: "夕暮れに向かうルクソールの神殿群", facts: [["STAY", "船中泊 3/3"], ["OPTION", "ルクソール博物館観光"]],
+    image: "assets/luxor-temple.jpg", caption: "夜の光に浮かぶルクソール神殿", facts: [["STAY", "船中泊 3/3"], ["OPTION", "ルクソール博物館観光"]],
     events: [
       ["朝", "エドフ・ホルス神殿", "天空の神ホルスに捧げられた神殿。", "edfu"],
       ["航行", "エスナの水門を通過", "約6mの水位差を越えてルクソールへ。", "nile"],
@@ -148,7 +148,7 @@ const days = [
   {
     date: "9/26", weekday: "SAT", jpWeekday: "土", location: "LUXOR → CAIRO", title: "王家の谷、旅のクライマックス",
     summary: "王たちの墓と大列柱室を巡り、夜の便で帰国の途へ。旅の密度が最も高い一日です。",
-    image: "assets/karnak.jpg", caption: "カルナック神殿の巨大な列柱", facts: [["STAY", "機中泊"], ["DINNER", "和食のお弁当"]],
+    image: "assets/valley-of-kings.jpg", caption: "岩山に王墓が眠る王家の谷", facts: [["STAY", "機中泊"], ["DINNER", "和食のお弁当"]],
     events: [
       ["午前", "ルクソール西岸", "ゴールデンシティ、貴族の墓、ラムセス2世葬祭殿。"],
       ["王家の谷", "ツタンカーメン王の墓", "貸切入場。セティ1世の墓も見学予定。", "valley"],
@@ -160,7 +160,7 @@ const days = [
   {
     date: "9/27", weekday: "SUN", jpWeekday: "日", location: "CAIRO → NARITA", title: "おかえりなさい。旅の余韻とともに",
     summary: "機内で旅を振り返りながら日本へ。成田到着後、入国・手荷物受取を経て解散です。",
-    image: "assets/nile.jpg", caption: "ナイルの景色を思い返しながら帰国", facts: [["ARRIVAL", "成田 18:30予定"], ["MEAL", "旅行日程上は食事なし"]],
+    image: "assets/karnak.jpg", caption: "エジプトの壮大な景色を胸に帰国", facts: [["ARRIVAL", "成田 18:30予定"], ["MEAL", "旅行日程上は食事なし"]],
     events: [
       ["機内", "カイロから成田へ", "乗継便で日本へ。"],
       ["18:30", "成田空港 着", "入国、受託手荷物受取後に解散。"]
