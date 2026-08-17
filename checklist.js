@@ -62,6 +62,13 @@ const groups = [
 
 const storageKey = "egypt-2026-packing-checklist";
 const scheduleStorageKey = "egypt-2026-travel-schedule";
+const schedulePreset = {
+  presetVersion: 2,
+  takuyaPickup: "13:45",
+  kazukiPickup: "14:00",
+  naritaArrival: "15:30",
+  hisMeeting: "17:00"
+};
 const travelers = [
   { id: "takuya", name: "TAKUYA" },
   { id: "kazuki", name: "KAZUKI" },
@@ -72,9 +79,12 @@ let filter = "all";
 
 function loadSchedule() {
   try {
-    return { hisMeeting: "18:00", ...JSON.parse(localStorage.getItem(scheduleStorageKey)) };
+    const stored = JSON.parse(localStorage.getItem(scheduleStorageKey));
+    return stored?.presetVersion === schedulePreset.presetVersion
+      ? { ...schedulePreset, ...stored }
+      : { ...schedulePreset };
   } catch {
-    return { hisMeeting: "18:00" };
+    return { ...schedulePreset };
   }
 }
 
