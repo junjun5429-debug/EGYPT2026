@@ -39,8 +39,8 @@
       --cp-highlight: rgba(177, 31, 75, 0.12);
     }
   </style>
-  <link rel="stylesheet" href="styles.css?v=20260817-11">
-  <script src="app.js?v=20260817-5" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20260817-13">
+  <script src="app.js?v=20260817-6" defer></script>
 </head>
 <body>
   <header class="hero" id="top">
@@ -89,6 +89,9 @@
 
   <main>
     <section class="itinerary" id="itinerary" aria-labelledby="itinerary-title">
+      <button class="itinerary-extra" type="button" id="arabic-open">
+        簡単なアラビア語コミュニケーション <span aria-hidden="true">＋</span>
+      </button>
       <div class="section-heading compact">
         <p class="eyebrow">DAILY ITINERARY</p>
         <h2 id="itinerary-title">日付から旅をひらく</h2>
@@ -193,6 +196,31 @@
         <ul id="place-highlights"></ul>
       </div>
       <div class="place-meta" id="place-meta"></div>
+    </div>
+  </dialog>
+
+  <dialog class="arabic-dialog" id="arabic-dialog" aria-labelledby="arabic-title">
+    <button type="button" class="dialog-close" id="arabic-close" aria-label="アラビア語コミュニケーションを閉じる">×</button>
+    <div class="arabic-content">
+      <p class="eyebrow">ARABIC PHRASES</p>
+      <h2 id="arabic-title"><span>簡単なアラビア語</span><span>コミュニケーション</span></h2>
+      <dl class="arabic-phrases">
+        <div><dt>ありがとう</dt><dd>シュクラン</dd></div>
+        <div><dt>いいえ、結構です</dt><dd>ラー、シュクラン</dd></div>
+        <div><dt>お願いします、すいません</dt><dd>ミナファドラク <small>女性に対しては「ミナファドリッキ」</small></dd></div>
+        <div><dt>こんにちは</dt><dd>サラーム・アレイコム</dd></div>
+        <div><dt>こんにちは（返答）</dt><dd>ワ・アレイコム・サラーム <small>挨拶をされた時の返事</small></dd></div>
+        <div><dt>さようなら</dt><dd>マア・ッサラーマ</dd></div>
+        <div><dt>はい（Yes）</dt><dd>アイワ</dd></div>
+        <div><dt>いいえ（No）</dt><dd>ラー</dd></div>
+        <div><dt>これはいくらですか？</dt><dd>ビカム・ディー？</dd></div>
+        <div><dt>トイレはどこですか？</dt><dd>エル・ハンマーム・フェーン？</dd></div>
+        <div><dt>これをください</dt><dd>アーイズ・ダー <small>女性は「アーイザ・ディー」</small></dd></div>
+        <div><dt>高すぎます</dt><dd>ガーリ・アウィ</dd></div>
+        <div><dt>助けてください</dt><dd>サーイドニー</dd></div>
+        <div><dt>大丈夫です</dt><dd>タマーム</dd></div>
+        <div><dt>水をください</dt><dd>マイヤ、ミン・ファドラク</dd></div>
+      </dl>
     </div>
   </dialog>
 </body>

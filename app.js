@@ -182,8 +182,10 @@ let lastTrigger = null;
 const dateStrip = document.querySelector("#date-strip");
 const route = document.querySelector("#route");
 const dialog = document.querySelector("#place-dialog");
+const arabicDialog = document.querySelector("#arabic-dialog");
 const currencyInputs = [...document.querySelectorAll("[data-currency]")];
 let currencyRates = null;
+let arabicTrigger = null;
 
 function weatherLabel(code) {
   if (code === 0) return "快晴";
@@ -403,6 +405,18 @@ function closePlace() {
   if (lastTrigger) lastTrigger.focus();
 }
 
+function openArabic() {
+  arabicTrigger = document.activeElement;
+  arabicDialog.showModal();
+  document.body.classList.add("dialog-open");
+}
+
+function closeArabic() {
+  if (arabicDialog.open) arabicDialog.close();
+  document.body.classList.remove("dialog-open");
+  if (arabicTrigger) arabicTrigger.focus();
+}
+
 function updateHash(placeId) {
   const value = `day=${selectedDay + 1}${placeId ? `&place=${placeId}` : ""}`;
   history.replaceState(null, "", `#${value}`);
@@ -423,6 +437,10 @@ document.querySelector("#next-day").addEventListener("click", () => selectDay(se
 document.querySelector("#dialog-close").addEventListener("click", closePlace);
 dialog.addEventListener("click", event => { if (event.target === dialog) closePlace(); });
 dialog.addEventListener("cancel", event => { event.preventDefault(); closePlace(); });
+document.querySelector("#arabic-open").addEventListener("click", openArabic);
+document.querySelector("#arabic-close").addEventListener("click", closeArabic);
+arabicDialog.addEventListener("click", event => { if (event.target === arabicDialog) closeArabic(); });
+arabicDialog.addEventListener("cancel", event => { event.preventDefault(); closeArabic(); });
 window.addEventListener("hashchange", restoreFromHash);
 document.querySelector("#weather-refresh").addEventListener("click", loadWeather);
 document.querySelector("#currency-refresh").addEventListener("click", loadCurrencyRates);
