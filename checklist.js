@@ -118,23 +118,36 @@ function allGroups() {
   }];
 }
 
+function escapeHtml(value) {
+  return value.replace(/[&<>'"]/g, character => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;"
+  })[character]);
+}
+
 function render() {
   const checklistGrid = document.querySelector("#checklist-grid");
   checklistGrid.innerHTML = allGroups().map(group => {
     const checkedCount = group.items.filter(item => state.checked[item[0]]).length;
     return `<section class="checklist-group" data-group="${group.id}">
       <header><h2>${group.title}</h2><span class="group-count">${checkedCount} / ${group.items.length}</span></header>
-      <div class="check-items">${group.items.map(item => `
+      <div class="check-items">${group.items.map(item => `${group.id === "custom" ? `<div class="custom-item-row${filter === "remaining" && state.checked[item[0]] ? " is-hidden" : ""}">` : ""}
         <label class="check-item${filter === "remaining" && state.checked[item[0]] ? " is-hidden" : ""}">
           <input type="checkbox" data-id="${item[0]}" ${state.checked[item[0]] ? "checked" : ""}>
-          <span><strong>${item[1]}</strong><small>${item[2]}</small></span>
+          <span><strong>${escapeHtml(item[1])}</strong><small>${item[2]}</small></span>
           <span class="bag">${item[3]}</span>
-        </label>`).join("")}</div>
+        </label>${group.id === "custom" ? `<button class="custom-delete" type="button" data-delete-id="${item[0]}" aria-label="${escapeHtml(item[1])}を削除" title="削除">×</button></div>` : ""}`).join("")}</div>
     </section>`;
   }).join("");
 
   checklistGrid.querySelectorAll("input[type='checkbox']").forEach(input => input.addEventListener("change", () => {
     state.checked[input.dataset.id] = input.checked;
+    saveState();
+    render();
+  }));
+  checklistGrid.querySelectorAll("[data-delete-id]").forEach(button => button.addEventListener("click", () => {
+    const id = button.dataset.deleteId;
+    state.custom = state.custom.filter(item => item.id !== id);
+    delete state.checked[id];
     saveState();
     render();
   }));
@@ -148,7 +161,7 @@ function updateProgress() {
   document.querySelector("#progress-percent").textContent = `${percent}%`;
   document.querySelector("#progress-count").textContent = `${checked} / ${items.length} 準備済み`;
   document.querySelector("#progress-bar").style.width = `${percent}%`;
-  const visible = document.querySelectorAll(".check-item:not(.is-hidden)").length;
+  const visible = document.querySelectorAll(".check-item:not(.is-hidden):not(.custom-item-row.is-hidden .check-item)").length;
   document.querySelector("#empty-state").classList.toggle("is-visible", filter === "remaining" && visible === 0);
 }
 
