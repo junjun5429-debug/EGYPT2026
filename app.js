@@ -245,7 +245,11 @@ async function loadWeather() {
 function renderRoute() {
   route.innerHTML = routeNames.map((name, index) => `
     <button class="route-stop" type="button" data-day="${index}" aria-label="Day ${index + 1} ${name}を表示">
-      <span>DAY ${String(index + 1).padStart(2, "0")}</span><strong>${name}</strong>
+      <img src="${days[index].image}" alt="" loading="lazy">
+      <span class="route-day">DAY ${String(index + 1).padStart(2, "0")}</span>
+      <span class="route-date">${days[index].date} ${days[index].weekday}</span>
+      <strong>${name}</strong>
+      <small>${days[index].title}</small>
     </button>`).join("");
   route.querySelectorAll("button").forEach(button => button.addEventListener("click", () => {
     selectDay(Number(button.dataset.day), true);
