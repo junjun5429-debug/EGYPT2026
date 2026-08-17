@@ -61,6 +61,7 @@ const groups = [
 ];
 
 const storageKey = "egypt-2026-packing-checklist";
+const scheduleStorageKey = "egypt-2026-travel-schedule";
 const travelers = [
   { id: "takuya", name: "TAKUYA" },
   { id: "kazuki", name: "KAZUKI" },
@@ -68,6 +69,25 @@ const travelers = [
 ];
 let state = loadState();
 let filter = "all";
+
+function loadSchedule() {
+  try {
+    return { hisMeeting: "18:00", ...JSON.parse(localStorage.getItem(scheduleStorageKey)) };
+  } catch {
+    return { hisMeeting: "18:00" };
+  }
+}
+
+const schedule = loadSchedule();
+
+document.querySelectorAll("[data-schedule-time]").forEach(input => {
+  const key = input.dataset.scheduleTime;
+  input.value = schedule[key] || "";
+  input.addEventListener("input", () => {
+    schedule[key] = input.value;
+    localStorage.setItem(scheduleStorageKey, JSON.stringify(schedule));
+  });
+});
 
 function loadState() {
   try {
