@@ -103,7 +103,7 @@ img { display: block; max-width: 100%; }
 .weather-source a { color: var(--cp-link); }
 @keyframes weather-spin { to { transform: rotate(360deg); } }
 
-main section { padding: 104px var(--page-gutter); }
+main > section { padding: 104px var(--page-gutter); }
 .section-heading { max-width: 760px; margin-bottom: 52px; }
 .section-heading.compact { margin-bottom: 34px; }
 .section-heading h2 { margin: 0; font-size: clamp(2.1rem, 4vw, 3.6rem); line-height: 1.12; letter-spacing: 0; }
@@ -300,7 +300,7 @@ body.dialog-open { overflow: hidden; }
   .weather-card { min-width: 0; min-height: 42px; padding: 6px 7px; }
   .weather-card strong { font-size: 1.1rem; }
   .weather-card p { overflow: hidden; font-size: .57rem; text-overflow: ellipsis; white-space: nowrap; }
-  main section { padding: 76px 20px; }
+  main > section { padding: 76px 20px; }
   .section-heading { margin-bottom: 36px; }
   .route { grid-template-columns: repeat(2, 1fr); }
   .date-strip { margin: 0 -20px; border-right: 0; border-left: 0; }
