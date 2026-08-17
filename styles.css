@@ -1,4 +1,5 @@
 * { box-sizing: border-box; }
+:root { --page-gutter: max(24px, 5vw, calc((100vw - 1280px) / 2)); }
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
@@ -32,7 +33,7 @@ img { display: block; max-width: 100%; }
   align-items: center;
   justify-content: space-between;
   min-height: 76px;
-  padding: 0 5vw;
+  padding: 0 var(--page-gutter);
   border-bottom: 1px solid var(--cp-sheen);
 }
 .brand { display: inline-flex; align-items: baseline; gap: 10px; text-decoration: none; font-weight: 800; }
@@ -45,7 +46,7 @@ img { display: block; max-width: 100%; }
   position: relative;
   z-index: 2;
   width: min(720px, 90vw);
-  padding: clamp(86px, 14vh, 150px) 0 140px 8vw;
+  padding: clamp(86px, 14vh, 150px) 0 140px var(--page-gutter);
 }
 .eyebrow { margin: 0 0 12px; color: var(--cp-accent); font-size: .73rem; font-weight: 800; letter-spacing: .17em; }
 .hero .eyebrow { color: var(--cp-accent-fg); }
@@ -54,9 +55,9 @@ img { display: block; max-width: 100%; }
 .hero-stats {
   position: absolute;
   z-index: 3;
-  right: 5vw;
+  right: var(--page-gutter);
   bottom: 0;
-  left: 5vw;
+  left: var(--page-gutter);
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   background: var(--cp-panel-strong);
@@ -77,7 +78,7 @@ img { display: block; max-width: 100%; }
 .hero-stats a:nth-child(3):hover { background: var(--cp-accent-hover); }
 .hero-stats a span { color: currentColor; }
 
-.weather-panel { position: absolute; z-index: 3; right: 5vw; bottom: 120px; width: min(420px, 70vw); padding: 10px 12px 8px; background: var(--cp-panel); color: var(--cp-text); border: 1px solid var(--cp-border); backdrop-filter: blur(10px); }
+.weather-panel { position: absolute; z-index: 3; right: var(--page-gutter); bottom: 120px; width: min(420px, 70vw); padding: 10px 12px 8px; background: var(--cp-panel); color: var(--cp-text); border: 1px solid var(--cp-border); backdrop-filter: blur(10px); }
 .weather-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 8px; }
 .weather-heading .eyebrow { margin: 0; font-size: .57rem; }
 .weather-heading h2 { margin: 1px 0 0; font-size: .9rem; line-height: 1.2; }
@@ -99,7 +100,7 @@ img { display: block; max-width: 100%; }
 .weather-source a { color: var(--cp-link); }
 @keyframes weather-spin { to { transform: rotate(360deg); } }
 
-main section { padding: 104px max(5vw, 24px); }
+main section { padding: 104px var(--page-gutter); }
 .section-heading { max-width: 760px; margin-bottom: 52px; }
 .section-heading.compact { margin-bottom: 34px; }
 .section-heading h2 { margin: 0; font-size: clamp(2.1rem, 4vw, 3.6rem); line-height: 1.12; letter-spacing: 0; }
@@ -166,18 +167,18 @@ main section { padding: 104px max(5vw, 24px); }
 .essential-grid span { color: var(--cp-accent); font-weight: 800; }
 .essential-grid h3 { margin: 16px 0 8px; font-size: 1.2rem; }
 .essential-grid p { margin: 0; color: var(--cp-text-muted); font-size: .9rem; }
-footer { display: flex; justify-content: space-between; gap: 24px; padding: 28px 5vw; background: var(--cp-surface-soft); color: var(--cp-text-muted); font-size: .75rem; }
+footer { display: flex; justify-content: space-between; gap: 24px; padding: 28px var(--page-gutter); background: var(--cp-surface-soft); color: var(--cp-text-muted); font-size: .75rem; }
 footer p { margin: 0; }
 footer a { color: var(--cp-link); }
 
 .checklist-page { min-height: 100vh; background: var(--cp-bg); }
-.checklist-header { padding: 0 max(5vw, 24px) 68px; background: var(--cp-bg-elevated); border-bottom: 1px solid var(--cp-border); }
-.checklist-header .topbar { margin: 0 calc(max(5vw, 24px) * -1); color: var(--cp-text); border-color: var(--cp-border); }
+.checklist-header { padding: 0 var(--page-gutter) 68px; background: var(--cp-bg-elevated); border-bottom: 1px solid var(--cp-border); }
+.checklist-header .topbar { margin: 0 calc(var(--page-gutter) * -1); color: var(--cp-text); border-color: var(--cp-border); }
 .checklist-header .topbar-link:hover { border-color: var(--cp-accent); color: var(--cp-accent); }
 .checklist-title { max-width: 820px; padding-top: 72px; }
 .checklist-title h1 { margin: 0; font-size: clamp(2.8rem, 6vw, 5.4rem); line-height: 1.02; }
 .checklist-title > p:last-child { max-width: 620px; margin: 20px 0 0; color: var(--cp-text-muted); }
-.checklist-main { padding: 44px max(5vw, 24px) 104px; }
+.checklist-main { padding: 44px var(--page-gutter) 104px; }
 .preflight-notes { padding: 34px 0 72px; }
 .packing-checklist { padding-top: 72px; border-top: 1px solid var(--cp-border); }
 .checklist-section-heading > p:last-child { max-width: 680px; }
