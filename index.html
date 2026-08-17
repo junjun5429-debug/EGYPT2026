@@ -39,8 +39,8 @@
       --cp-highlight: rgba(177, 31, 75, 0.12);
     }
   </style>
-  <link rel="stylesheet" href="styles.css?v=20260817-10">
-  <script src="app.js?v=20260817-4" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20260817-11">
+  <script src="app.js?v=20260817-5" defer></script>
 </head>
 <body>
   <header class="hero" id="top">
@@ -82,6 +82,7 @@
     <div class="hero-stats" aria-label="旅行概要">
       <a href="#itinerary">旅程を見る <span aria-hidden="true">↓</span></a>
       <a href="#overview">全体スケジュール <span aria-hidden="true">↓</span></a>
+      <a href="#currency">レート換算 <span aria-hidden="true">↓</span></a>
       <a href="checklist.html">事前チェック <span aria-hidden="true">→</span></a>
     </div>
   </header>
@@ -132,6 +133,40 @@
         <article><span>FLIGHT</span><strong>成田 → カイロ</strong><p>往路は直行便、復路はカイロ乗継。</p></article>
         <article><span>CRUISE</span><strong>アスワン → ルクソール</strong><p>5つ星クルーズ船で3連泊。</p></article>
         <article><span>SPECIAL</span><strong>貸切で出会う遺跡</strong><p>スフィンクス、アブシンベル、王家の谷。</p></article>
+      </div>
+    </section>
+
+    <section class="currency" id="currency" aria-labelledby="currency-title">
+      <div class="currency-heading">
+        <div>
+          <p class="eyebrow">CURRENCY CONVERTER</p>
+          <h2 id="currency-title"><span>旅先の金額を、</span><span>すぐ換算</span></h2>
+          <p>いずれかの金額を入力すると、日本円・米ドル・エジプトポンドへ換算します。</p>
+        </div>
+        <div class="currency-status">
+          <span id="currency-updated" aria-live="polite">最新レートを取得中</span>
+          <button class="currency-refresh" type="button" id="currency-refresh">
+            <span aria-hidden="true">↻</span> レート更新
+          </button>
+        </div>
+      </div>
+      <div class="currency-fields" id="currency-fields">
+        <label>
+          <span><strong>JPY</strong> 日本円</span>
+          <span class="currency-input"><small>¥</small><input type="number" min="0" step="1" inputmode="decimal" data-currency="JPY" value="10000" aria-label="日本円"></span>
+        </label>
+        <label>
+          <span><strong>USD</strong> 米ドル</span>
+          <span class="currency-input"><small>$</small><input type="number" min="0" step="0.01" inputmode="decimal" data-currency="USD" aria-label="米ドル"></span>
+        </label>
+        <label>
+          <span><strong>EGP</strong> エジプトポンド</span>
+          <span class="currency-input"><small>E£</small><input type="number" min="0" step="0.01" inputmode="decimal" data-currency="EGP" aria-label="エジプトポンド"></span>
+        </label>
+      </div>
+      <div class="currency-meta">
+        <p id="currency-rate">レートを確認しています</p>
+        <p>参考値です。手数料は含みません。Rates by <a href="https://www.exchangerate-api.com/" target="_blank" rel="noreferrer">ExchangeRate-API</a></p>
       </div>
     </section>
 

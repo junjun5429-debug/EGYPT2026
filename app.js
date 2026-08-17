@@ -169,6 +169,8 @@ const days = [
 ];
 
 const routeNames = ["成田", "カイロ・ギザ", "アブシンベル", "アスワン", "コムオンボ", "エドフ", "ルクソール", "成田"];
+const currencyCodes = ["JPY", "USD", "EGP"];
+const currencyCacheKey = "egypt-2026-currency-rates";
 const weatherCities = [
   { name: "カイロ", label: "CAIRO", latitude: 30.0444, longitude: 31.2357 },
   { name: "ルクソール", label: "LUXOR", latitude: 25.6872, longitude: 32.6396 },
@@ -180,6 +182,8 @@ let lastTrigger = null;
 const dateStrip = document.querySelector("#date-strip");
 const route = document.querySelector("#route");
 const dialog = document.querySelector("#place-dialog");
+const currencyInputs = [...document.querySelectorAll("[data-currency]")];
+let currencyRates = null;
 
 function weatherLabel(code) {
   if (code === 0) return "快晴";
@@ -236,6 +240,77 @@ async function loadWeather() {
     updated.textContent = "取得できませんでした";
     document.querySelector("#weather-grid").innerHTML = weatherCities.map(city => `
       <article class="weather-card is-unavailable"><span>${city.label}</span><strong>--°</strong><p>再度更新</p></article>`).join("");
+  } finally {
+    refreshButton.disabled = false;
+    refreshButton.classList.remove("is-loading");
+  }
+}
+
+function formatCurrencyAmount(value, code) {
+  if (!Number.isFinite(value)) return "";
+  const maximumFractionDigits = code === "JPY" ? 0 : 2;
+  return Number(value.toFixed(maximumFractionDigits)).toString();
+}
+
+function convertCurrency(sourceInput) {
+  if (!currencyRates) return;
+  const sourceCode = sourceInput.dataset.currency;
+  const sourceAmount = Number(sourceInput.value);
+  if (!Number.isFinite(sourceAmount) || sourceInput.value === "") {
+    currencyInputs.filter(input => input !== sourceInput).forEach(input => { input.value = ""; });
+    return;
+  }
+  const amountInUsd = sourceAmount / currencyRates[sourceCode];
+  currencyInputs.filter(input => input !== sourceInput).forEach(input => {
+    input.value = formatCurrencyAmount(amountInUsd * currencyRates[input.dataset.currency], input.dataset.currency);
+  });
+}
+
+function showCurrencyRates(data, cached = false) {
+  currencyRates = data.rates;
+  const updatedDate = new Intl.DateTimeFormat("ja-JP", {
+    year: "numeric", month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit"
+  }).format(new Date(data.updatedAt));
+  document.querySelector("#currency-updated").textContent = `${updatedDate}更新${cached ? "（保存済み）" : ""}`;
+  document.querySelector("#currency-rate").textContent = `1 USD = ${currencyRates.JPY.toFixed(2)} JPY · ${currencyRates.EGP.toFixed(2)} EGP`;
+  convertCurrency(currencyInputs.find(input => input.value !== "") || currencyInputs[0]);
+}
+
+function loadCachedCurrencyRates() {
+  try {
+    const cached = JSON.parse(localStorage.getItem(currencyCacheKey));
+    if (currencyCodes.every(code => Number.isFinite(cached?.rates?.[code])) && cached?.updatedAt) {
+      showCurrencyRates(cached, true);
+      return true;
+    }
+  } catch {
+    return false;
+  }
+  return false;
+}
+
+async function loadCurrencyRates() {
+  const refreshButton = document.querySelector("#currency-refresh");
+  const updated = document.querySelector("#currency-updated");
+  refreshButton.disabled = true;
+  refreshButton.classList.add("is-loading");
+  updated.textContent = "最新レートを取得中";
+  try {
+    const response = await fetch("https://open.er-api.com/v6/latest/USD", { signal: AbortSignal.timeout(10000) });
+    if (!response.ok) throw new Error("Currency request failed");
+    const data = await response.json();
+    if (data.result !== "success" || !currencyCodes.every(code => Number.isFinite(data.rates?.[code]))) {
+      throw new Error("Currency data unavailable");
+    }
+    const rates = Object.fromEntries(currencyCodes.map(code => [code, data.rates[code]]));
+    const currencyData = { rates, updatedAt: data.time_last_update_utc || new Date().toISOString() };
+    localStorage.setItem(currencyCacheKey, JSON.stringify(currencyData));
+    showCurrencyRates(currencyData);
+  } catch {
+    if (!loadCachedCurrencyRates()) {
+      updated.textContent = "レートを取得できませんでした";
+      document.querySelector("#currency-rate").textContent = "通信環境を確認して再度更新してください";
+    }
   } finally {
     refreshButton.disabled = false;
     refreshButton.classList.remove("is-loading");
@@ -350,9 +425,12 @@ dialog.addEventListener("click", event => { if (event.target === dialog) closePl
 dialog.addEventListener("cancel", event => { event.preventDefault(); closePlace(); });
 window.addEventListener("hashchange", restoreFromHash);
 document.querySelector("#weather-refresh").addEventListener("click", loadWeather);
+document.querySelector("#currency-refresh").addEventListener("click", loadCurrencyRates);
+currencyInputs.forEach(input => input.addEventListener("input", () => convertCurrency(input)));
 
 renderRoute();
 restoreFromHash();
 updateEgyptTime();
 setInterval(updateEgyptTime, 30000);
 loadWeather();
+loadCurrencyRates();
