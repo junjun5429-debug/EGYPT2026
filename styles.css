@@ -205,14 +205,6 @@ footer a { color: var(--cp-link); }
 .parking-guide a { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--cp-border); color: var(--cp-link); text-decoration: none; }
 .parking-guide a span { color: var(--cp-text-muted); font-size: .75rem; font-weight: 700; }
 .parking-guide a strong { font-size: 1.05rem; font-variant-numeric: tabular-nums; }
-.traveler-selector { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 18px; }
-.traveler-selector > span { color: var(--cp-text-muted); font-size: .78rem; font-weight: 800; }
-.traveler-tabs { display: grid; grid-template-columns: repeat(3, minmax(120px, 1fr)); width: min(100%, 520px); border: 1px solid var(--cp-border); background: var(--cp-surface); }
-.traveler-tabs button { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 52px; padding: 10px 16px; border: 0; border-right: 1px solid var(--cp-border); background: transparent; color: var(--cp-text-muted); font-size: .8rem; font-weight: 800; cursor: pointer; }
-.traveler-tabs button:last-child { border-right: 0; }
-.traveler-tabs button:hover { background: var(--cp-accent-soft); color: var(--cp-accent); }
-.traveler-tabs button[aria-selected="true"] { background: var(--cp-accent); color: var(--cp-accent-fg); }
-.traveler-tabs small { font-size: .65rem; font-weight: 700; }
 .checklist-toolbar { position: sticky; z-index: 4; top: 0; display: grid; grid-template-columns: minmax(220px, 1fr) auto auto; gap: 20px; align-items: center; padding: 18px 0; background: var(--cp-bg); border-bottom: 1px solid var(--cp-border); }
 .progress-copy { display: flex; align-items: baseline; gap: 12px; }
 .progress-copy strong { color: var(--cp-accent); font-size: 1.55rem; }
@@ -352,11 +344,6 @@ body.dialog-open { overflow: hidden; }
   .schedule-times input { width: 110px; }
   .parking-guide { padding: 18px; }
   .packing-checklist { padding-top: 40px; }
-  .traveler-selector { display: block; }
-  .traveler-selector > span { display: block; margin-bottom: 8px; }
-  .traveler-tabs { grid-template-columns: repeat(3, minmax(0, 1fr)); width: 100%; }
-  .traveler-tabs button { display: block; min-width: 0; padding: 9px 6px; text-align: center; }
-  .traveler-tabs small { display: block; margin-top: 2px; }
   .checklist-toolbar { grid-template-columns: 1fr auto; gap: 12px; }
   .progress { grid-column: 1 / -1; }
   .filter-group { justify-self: start; }

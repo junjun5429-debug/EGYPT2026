@@ -69,11 +69,6 @@ const schedulePreset = {
   naritaArrival: "15:30",
   hisMeeting: "17:00"
 };
-const travelers = [
-  { id: "takuya", name: "TAKUYA" },
-  { id: "kazuki", name: "KAZUKI" },
-  { id: "junpei", name: "JUNPEI" }
-];
 let state = loadState();
 let filter = "all";
 
@@ -103,26 +98,12 @@ function loadState() {
   try {
     const stored = JSON.parse(localStorage.getItem(storageKey));
     if (stored?.people) {
-      return {
-        activePerson: travelers.some(person => person.id === stored.activePerson) ? stored.activePerson : "junpei",
-        people: Object.fromEntries(travelers.map(person => [person.id, {
-          checked: stored.people[person.id]?.checked || {},
-          custom: stored.people[person.id]?.custom || []
-        }]))
-      };
+      const current = stored.people[stored.activePerson] || stored.people.junpei || {};
+      return { checked: current.checked || {}, custom: current.custom || [] };
     }
-    return {
-      activePerson: "junpei",
-      people: Object.fromEntries(travelers.map(person => [person.id, {
-        checked: person.id === "junpei" ? stored?.checked || {} : {},
-        custom: person.id === "junpei" ? stored?.custom || [] : []
-      }]))
-    };
+    return { checked: stored?.checked || {}, custom: stored?.custom || [] };
   } catch {
-    return {
-      activePerson: "junpei",
-      people: Object.fromEntries(travelers.map(person => [person.id, { checked: {}, custom: [] }]))
-    };
+    return { checked: {}, custom: [] };
   }
 }
 
@@ -130,28 +111,22 @@ function saveState() {
   localStorage.setItem(storageKey, JSON.stringify(state));
 }
 
-function personState(personId = state.activePerson) {
-  return state.people[personId];
-}
-
 function allGroups() {
-  const current = personState();
-  if (!current.custom.length) return groups;
+  if (!state.custom.length) return groups;
   return [...groups, {
-    id: "custom", title: "自分用", items: current.custom.map(item => [item.id, item.label, "追加した持ち物", "指定なし"])
+    id: "custom", title: "追加した持ち物", items: state.custom.map(item => [item.id, item.label, "追加した持ち物", "指定なし"])
   }];
 }
 
 function render() {
-  const current = personState();
   const checklistGrid = document.querySelector("#checklist-grid");
   checklistGrid.innerHTML = allGroups().map(group => {
-    const checkedCount = group.items.filter(item => current.checked[item[0]]).length;
+    const checkedCount = group.items.filter(item => state.checked[item[0]]).length;
     return `<section class="checklist-group" data-group="${group.id}">
       <header><h2>${group.title}</h2><span class="group-count">${checkedCount} / ${group.items.length}</span></header>
       <div class="check-items">${group.items.map(item => `
-        <label class="check-item${filter === "remaining" && current.checked[item[0]] ? " is-hidden" : ""}">
-          <input type="checkbox" data-id="${item[0]}" ${current.checked[item[0]] ? "checked" : ""}>
+        <label class="check-item${filter === "remaining" && state.checked[item[0]] ? " is-hidden" : ""}">
+          <input type="checkbox" data-id="${item[0]}" ${state.checked[item[0]] ? "checked" : ""}>
           <span><strong>${item[1]}</strong><small>${item[2]}</small></span>
           <span class="bag">${item[3]}</span>
         </label>`).join("")}</div>
@@ -159,17 +134,16 @@ function render() {
   }).join("");
 
   checklistGrid.querySelectorAll("input[type='checkbox']").forEach(input => input.addEventListener("change", () => {
-    personState().checked[input.dataset.id] = input.checked;
+    state.checked[input.dataset.id] = input.checked;
     saveState();
     render();
   }));
-  updateTravelerTabs();
   updateProgress();
 }
 
 function updateProgress() {
   const items = allGroups().flatMap(group => group.items);
-  const checked = items.filter(item => personState().checked[item[0]]).length;
+  const checked = items.filter(item => state.checked[item[0]]).length;
   const percent = items.length ? Math.round((checked / items.length) * 100) : 0;
   document.querySelector("#progress-percent").textContent = `${percent}%`;
   document.querySelector("#progress-count").textContent = `${checked} / ${items.length} 準備済み`;
@@ -177,30 +151,6 @@ function updateProgress() {
   const visible = document.querySelectorAll(".check-item:not(.is-hidden)").length;
   document.querySelector("#empty-state").classList.toggle("is-visible", filter === "remaining" && visible === 0);
 }
-
-function updateTravelerTabs() {
-  document.querySelectorAll("#traveler-tabs [role='tab']").forEach(button => {
-    const person = travelers.find(item => item.id === button.dataset.person);
-    const profile = personState(person.id);
-    const itemIds = [...groups.flatMap(group => group.items.map(item => item[0])), ...profile.custom.map(item => item.id)];
-    const checked = itemIds.filter(id => profile.checked[id]).length;
-    const selected = person.id === state.activePerson;
-    button.setAttribute("aria-selected", String(selected));
-    button.setAttribute("tabindex", selected ? "0" : "-1");
-    button.querySelector("small").textContent = `${checked}/${itemIds.length}`;
-  });
-  const activeName = travelers.find(person => person.id === state.activePerson).name;
-  document.querySelector("#custom-label").textContent = `${activeName}の持ち物を追加`;
-  document.querySelector("#reset-checklist").textContent = `${activeName}をリセット`;
-}
-
-document.querySelectorAll("#traveler-tabs [role='tab']").forEach(button => button.addEventListener("click", () => {
-  state.activePerson = button.dataset.person;
-  filter = "all";
-  document.querySelectorAll(".filter-button").forEach(item => item.setAttribute("aria-pressed", String(item.dataset.filter === "all")));
-  saveState();
-  render();
-}));
 
 document.querySelectorAll(".filter-button").forEach(button => button.addEventListener("click", () => {
   filter = button.dataset.filter;
@@ -213,14 +163,14 @@ document.querySelector("#custom-form").addEventListener("submit", event => {
   const input = document.querySelector("#custom-item");
   const label = input.value.trim();
   if (!label) return;
-  personState().custom.push({ id: `custom-${Date.now()}`, label });
+  state.custom.push({ id: `custom-${Date.now()}`, label });
   input.value = "";
   saveState();
   render();
 });
 
 document.querySelector("#reset-checklist").addEventListener("click", () => {
-  personState().checked = {};
+  state.checked = {};
   saveState();
   render();
 });

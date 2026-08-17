@@ -40,7 +40,7 @@
     }
   </style>
   <link rel="stylesheet" href="styles.css?v=20260817-9">
-  <script src="checklist.js?v=20260817-3" defer></script>
+  <script src="checklist.js?v=20260817-4" defer></script>
 </head>
 <body class="checklist-page">
   <header class="checklist-header">
@@ -98,17 +98,9 @@
       <div class="section-heading compact checklist-section-heading">
         <p class="eyebrow">PACKING CHECKLIST</p>
         <h2 id="packing-title">持ち物チェック</h2>
-        <p>名前を選んで、それぞれの準備状況を確認できます。チェック状況はこのブラウザーに自動保存されます。</p>
+        <p>チェック状況はこのブラウザーに自動保存されます。</p>
       </div>
-    <div class="traveler-selector">
-      <span>準備する人</span>
-      <div class="traveler-tabs" id="traveler-tabs" role="tablist" aria-label="準備する人を選択">
-        <button type="button" role="tab" data-person="takuya">TAKUYA <small></small></button>
-        <button type="button" role="tab" data-person="kazuki">KAZUKI <small></small></button>
-        <button type="button" role="tab" data-person="junpei">JUNPEI <small></small></button>
-      </div>
-    </div>
-    <div class="checklist-toolbar" id="packing-panel" role="tabpanel">
+    <div class="checklist-toolbar">
       <div class="progress">
         <div class="progress-copy"><strong id="progress-percent">0%</strong><span id="progress-count">0 / 0 準備済み</span></div>
         <div class="progress-track" aria-hidden="true"><div class="progress-bar" id="progress-bar"></div></div>
@@ -124,7 +116,7 @@
     <p class="empty-state" id="empty-state">すべて準備できました。</p>
 
     <form class="custom-panel" id="custom-form">
-      <label for="custom-item" id="custom-label">自分用の持ち物を追加</label>
+      <label for="custom-item">持ち物を追加</label>
       <input id="custom-item" name="customItem" type="text" maxlength="50" placeholder="例：旅行用の本" autocomplete="off">
       <button class="add-button" type="submit">追加</button>
     </form>
