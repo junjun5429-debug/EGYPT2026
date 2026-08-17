@@ -281,8 +281,8 @@ body.dialog-open { overflow: hidden; }
   .topbar { padding: 0 20px; }
   .topbar-meta { font-size: .66rem; }
   .topbar-meta > span { display: none; }
-  .hero { background-position: 45% 42%; }
-  .hero-content { width: 100%; margin-left: 0; padding: 72px 18px 250px 70px; }
+  .hero { min-height: 620px; background-position: 58% 42%; }
+  .hero-content { width: 100%; margin-left: 0; padding: 32px 18px 120px 70px; }
   .hero h1 { font-size: clamp(2.7rem, 13vw, 3.2rem); }
   .hero-copy { font-size: .92rem; }
   .hero-stats { right: 16px; left: 16px; grid-template-columns: repeat(3, 1fr); }
