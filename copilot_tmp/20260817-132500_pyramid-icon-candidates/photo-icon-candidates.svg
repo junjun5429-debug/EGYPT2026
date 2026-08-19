@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="864" height="328" viewBox="0 0 1080 410">
+  <defs>
+    <clipPath id="photo-a"><rect width="260" height="260" rx="48"/></clipPath>
+    <clipPath id="photo-b"><rect width="260" height="260" rx="48"/></clipPath>
+    <clipPath id="photo-c"><rect width="260" height="260" rx="48"/></clipPath>
+    <linearGradient id="shade-a" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="45%" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#102f32" stop-opacity=".72"/>
+    </linearGradient>
+    <linearGradient id="shade-c" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#176b70" stop-opacity=".08"/>
+      <stop offset="100%" stop-color="#b11f4b" stop-opacity=".28"/>
+    </linearGradient>
+    <filter id="warm" color-interpolation-filters="sRGB">
+      <feColorMatrix type="matrix" values="1.12 .08 0 0 .03  .03 .93 0 0 .01  0 .04 .72 0 0  0 0 0 1 0"/>
+    </filter>
+  </defs>
+  <rect width="1080" height="410" fill="#f7f4ef"/>
+  <style>
+    .label { font: 700 18px 'Segoe UI', sans-serif; fill: #242424; text-anchor: middle; }
+    .note { font: 500 13px 'Segoe UI', sans-serif; fill: #5c5c5c; text-anchor: middle; }
+  </style>
+
+  <g transform="translate(70 38)">
+    <g clip-path="url(#photo-a)">
+      <image href="../../assets/pyramids.jpg" x="0" y="0" width="260" height="260" preserveAspectRatio="xMidYMid slice"/>
+      <rect width="260" height="260" fill="url(#shade-a)"/>
+    </g>
+    <rect width="260" height="260" rx="48" fill="none" stroke="#176b70" stroke-width="8"/>
+  </g>
+  <text x="200" y="332" class="label">D. 写真＋ティール枠</text>
+  <text x="200" y="358" class="note">写真らしさとサイトカラーを両立</text>
+
+  <g transform="translate(410 38)">
+    <g clip-path="url(#photo-b)">
+      <image href="../../assets/pyramids.jpg" x="0" y="0" width="260" height="260" preserveAspectRatio="xMidYMid slice" filter="url(#warm)"/>
+      <rect width="260" height="260" fill="#b11f4b" opacity=".22" style="mix-blend-mode:multiply"/>
+      <circle cx="205" cy="54" r="28" fill="#f5c85b" opacity=".92"/>
+    </g>
+    <rect width="260" height="260" rx="48" fill="none" stroke="#b11f4b" stroke-width="8"/>
+  </g>
+  <text x="540" y="332" class="label">E. 写真＋サンセット</text>
+  <text x="540" y="358" class="note">旅情を強めた暖色グレーディング</text>
+
+  <g transform="translate(750 38)">
+    <g clip-path="url(#photo-c)">
+      <image href="../../assets/pyramids.jpg" x="-30" y="0" width="343" height="260" preserveAspectRatio="none"/>
+      <rect width="260" height="260" fill="url(#shade-c)"/>
+    </g>
+    <rect width="260" height="260" rx="48" fill="none" stroke="#263840" stroke-width="8"/>
+  </g>
+  <text x="880" y="332" class="label">F. 写真クローズアップ</text>
+  <text x="880" y="358" class="note">ホーム画面で被写体を強く見せる</text>
+</svg>

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="864" height="328" viewBox="0 0 1080 410">
+  <rect width="1080" height="410" fill="#f7f4ef"/>
+  <style>
+    .label { font: 700 18px 'Segoe UI', sans-serif; fill: #242424; text-anchor: middle; }
+    .note { font: 500 13px 'Segoe UI', sans-serif; fill: #5c5c5c; text-anchor: middle; }
+  </style>
+
+  <g transform="translate(70 38)">
+    <rect width="260" height="260" rx="48" fill="#176b70"/>
+    <circle cx="188" cy="70" r="34" fill="#f2c14e"/>
+    <path d="M42 210 130 62l88 148Z" fill="#f3d49a"/>
+    <path d="M130 62 218 210h-50Z" fill="#c89045"/>
+    <path d="M24 220h212" stroke="#ffffff" stroke-width="12" stroke-linecap="round" opacity=".92"/>
+    <path d="M130 93 66 201h128Z" fill="none" stroke="#fff7e8" stroke-width="6" stroke-linejoin="round" opacity=".7"/>
+  </g>
+  <text x="200" y="332" class="label">A. 太陽と大ピラミッド</text>
+  <text x="200" y="358" class="note">最もシンプル・小サイズ向け</text>
+
+  <g transform="translate(410 38)">
+    <rect width="260" height="260" rx="48" fill="#b11f4b"/>
+    <circle cx="64" cy="62" r="25" fill="#f5c85b"/>
+    <path d="M18 208 100 82l82 126Z" fill="#f4d7a1"/>
+    <path d="M100 82 182 208h-42Z" fill="#c98b43"/>
+    <path d="M116 208 186 112l58 96Z" fill="#eabf78"/>
+    <path d="M186 112 244 208h-34Z" fill="#a86b35"/>
+    <path d="M105 232c22-30 45-30 68 0" fill="none" stroke="#fff7e8" stroke-width="12" stroke-linecap="round"/>
+    <path d="M20 232h220" stroke="#fff7e8" stroke-width="8" stroke-linecap="round" opacity=".9"/>
+  </g>
+  <text x="540" y="332" class="label">B. ギザの二連ピラミッド</text>
+  <text x="540" y="358" class="note">旅の奥行き・華やかな印象</text>
+
+  <g transform="translate(750 38)">
+    <rect width="260" height="260" rx="48" fill="#263840"/>
+    <circle cx="194" cy="64" r="28" fill="#fd8ea1"/>
+    <path d="M40 190 132 54l92 136Z" fill="#e8bd73"/>
+    <path d="M132 54 224 190h-52Z" fill="#a96d36"/>
+    <path d="M24 206c26-16 52-16 78 0s52 16 78 0 52-16 78 0v36H24Z" fill="#2da7a0"/>
+    <path d="M24 218c26-16 52-16 78 0s52 16 78 0 52-16 78 0" fill="none" stroke="#bff2e8" stroke-width="7"/>
+    <path d="M80 190h112" stroke="#fff7e8" stroke-width="8" stroke-linecap="round" opacity=".9"/>
+  </g>
+  <text x="880" y="332" class="label">C. ピラミッドとナイル</text>
+  <text x="880" y="358" class="note">旅程全体を象徴・落ち着いた印象</text>
+</svg>
