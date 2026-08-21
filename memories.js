@@ -10,6 +10,22 @@ const THUMBNAIL_DIMENSION = 480;
 const MIN_IMAGE_QUALITY = 0.4;
 const MAX_IMAGE_QUALITY = 0.86;
 const ALLOWED_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp']);
+const DEFAULT_LOCATIONS = Object.freeze([
+  'ギザ',
+  '大エジプト博物館',
+  'カイロ',
+  'ホテル',
+  'アスワン',
+  'アブシンベル',
+  'ナセル湖',
+  'クルーズ船',
+  'コムオンボ',
+  'ホルス神殿',
+  'ルクソール',
+  'ルクソール博物館',
+  '王家の谷',
+  'カルナック神殿'
+]);
 const AUTH_EMAILS_STORAGE_KEY = 'egypt-memories-auth-emails';
 const AUTH_MODES = Object.freeze({ REGISTER: 'register', SIGN_IN: 'signin', SIGN_IN_WITH_EMAIL: 'signin-email', RECOVERY: 'recovery' });
 
@@ -365,10 +381,12 @@ async function loadMemories() {
   }
 
   state.memories = data || [];
-  const locations = [...new Set(state.memories.map((memory) => memory.location?.trim()).filter(Boolean))]
+  const savedLocations = [...new Set(state.memories.map((memory) => memory.location?.trim()).filter(Boolean))]
     .sort((left, right) => left.localeCompare(right, 'ja'));
-  renderLocationSuggestions(locations, 'memory-location-suggestions', 'memory-location');
-  renderLocationSuggestions(locations, 'location-suggestions', 'filter-location', renderMemories);
+  const defaultLocationKeys = new Set(DEFAULT_LOCATIONS.map((location) => location.toLocaleLowerCase('ja')));
+  const additionalLocations = savedLocations.filter((location) => !defaultLocationKeys.has(location.toLocaleLowerCase('ja')));
+  renderLocationSuggestions([...DEFAULT_LOCATIONS, ...additionalLocations], 'memory-location-suggestions', 'memory-location');
+  renderLocationSuggestions(savedLocations, 'location-suggestions', 'filter-location', renderMemories);
   const ownedIds = new Set(state.memories.filter(isMemoryOwner).map((memory) => memory.id));
   state.selectedIds.forEach((id) => {
     if (!ownedIds.has(id)) state.selectedIds.delete(id);
